@@ -51,22 +51,22 @@ class GO_NewRelic
 		{
 			if ( defined( 'DOING_AJAX' ) && DOING_AJAX )
 			{
-				newrelic_set_appname( $app_name . ' ajax' );
+				newrelic_set_appname('ajax;'. $app_name );
 				newrelic_disable_autorum();
 			}
 			else
 			{
-				newrelic_set_appname( $app_name . ' admin' );
+				newrelic_set_appname( 'admin;'. $app_name );
 			}
 		}
 		elseif ( defined( 'DOING_CRON' ) && DOING_CRON )
 		{
-			newrelic_set_appname( $app_name . ' cron' );
+			newrelic_set_appname( 'cron;'. $app_name );
 			newrelic_disable_autorum();
 		}
 		else
 		{
-			newrelic_set_appname( $app_name );
+			newrelic_set_appname( 'front;'.  $app_name );
 
 			// add more tracking of the template pieces
 			add_action( 'template_include' , array( $this , 'template_include' ) );
